@@ -38,7 +38,7 @@ router.post('/register',checkBodyContent, checkUniqueUsername, async (req, res, 
 
       try{
         const {username, password} = req.body;
-        const hash = bc.hashSync(password, 8);
+        const hash = bc.hashSync(password, process.env.HASH || 8);
         const user = {username, password: hash};
 
         let savedUser = await Users.add(user);
