@@ -6,8 +6,9 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "migrate": "knex migrate:latest",
+    "seed": "knex seed:run",
     "rollback": "knex migrate:rollback",
-    "resetdb": "rpm run rollback && npm run migrate",
+    "resetdb": "npm run rollback && npm run migrate",
     "test": "cross-env NODE_ENV=testing jest --verbose --runInBand --silent"
   },
   "repository": {
@@ -33,6 +34,7 @@
     "cross-env": "7.0.3",
     "eslint": "8.14.0",
     "jest": "28.1.0",
+    "jwt-decode": "^3.1.2",
     "nodemon": "2.0.16",
     "supertest": "6.2.3"
   }

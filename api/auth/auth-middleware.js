@@ -35,7 +35,7 @@ function checkUsernameExists(req, res, next) {
     Users.findBy({username}).first()
         .then( userFound => {
             if (!userFound) {
-                next({status: 401, message: 'credentials invalid'})
+                next({status: 401, message: 'invalid credentials'})
                 return;
             }
             req.body.user = userFound;

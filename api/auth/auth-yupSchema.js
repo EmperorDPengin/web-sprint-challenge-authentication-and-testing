@@ -13,7 +13,7 @@ const bodySchema = yup.object().shape({
         .trim()
         .typeError("username and password required")
         .required("username and password required")
-        .min(8, 'Password must be at least 8 characters')
+        .min(4, 'Password must be at least 4 characters')
 })
 
 module.exports = bodySchema;
