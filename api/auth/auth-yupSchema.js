@@ -6,7 +6,6 @@ const bodySchema = yup.object().shape({
         .trim()
         .typeError("username and password required")
         .required("username and password required")
-        .min(4, 'Username must be at least 4 charactes')
         .max(50, 'Username cant be more than 50 characters'),
     password: yup
         .string()
