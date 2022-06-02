@@ -48,7 +48,7 @@ describe('server.js', () => {
   describe('[POST] /api/auth/login', () => {
   test('[4] correct status and message on valid credentials', async () => {
     const res = await request(server).post('/api/auth/login').send({ username: 'andy', password: '1234' })
-    expect(res.body.message).toMatch(/Welcome, andy/i)
+    expect(res.body.message).toMatch(/welcome, andy/i)
   }) 
   test('[5] correct status and message on invalid credentials', async () => {
     let res = await request(server).post('/api/auth/login').send({ username: 'bobsy', password: '1234' })

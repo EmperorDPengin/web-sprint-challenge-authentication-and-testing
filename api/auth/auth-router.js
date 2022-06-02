@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const router = require('express').Router();
 const Users = require('../users/users-model');
 const {checkBodyContent, checkUniqueUsername, checkUsernameExists} = require('./auth-middleware');
-const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_SECRET = process.env.JWT_SECRET || "shh";
 
 router.post('/register',checkBodyContent, checkUniqueUsername, async (req, res, next) => {
   // res.end('implement register, please!');
@@ -83,7 +83,7 @@ router.post('/login',checkBodyContent, checkUsernameExists, async (req, res, nex
 
   if(user && bc.compareSync(password, user.password)) {
     res.status(200).json({
-      message: `Welcome, ${user.username}`,
+      message: `welcome, ${user.username}`,
       token: generateToken(user)
     })
   } else {
