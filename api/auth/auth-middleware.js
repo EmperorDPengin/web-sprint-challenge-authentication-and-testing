@@ -24,9 +24,9 @@ function checkUniqueUsername(req, res, next) {
                 next({status: 422, message: 'username taken'})
                 return;
             }
-
             next();
-        })
+    })
+    .catch(next);
 }
 
 function checkUsernameExists(req, res, next) {
@@ -41,7 +41,7 @@ function checkUsernameExists(req, res, next) {
             req.body.user = userFound;
             next();
         })
-        .catch(next)
+        .catch(next);
 }
 
 module.exports = {

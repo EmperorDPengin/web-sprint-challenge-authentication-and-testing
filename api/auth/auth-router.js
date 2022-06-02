@@ -34,15 +34,15 @@ router.post('/register',checkBodyContent, checkUniqueUsername, async (req, res, 
     4- On FAILED registration due to the `username` being taken,
       the response body should include a string exactly as follows: "username taken".
   */
-      
 
       try{
         const {username, password} = req.body;
-        const hash = bc.hashSync(password, process.env.HASH || 8);
+        let salt = process.env.HASH || 8;
+        const hash = bc.hashSync(password, 8);
         const user = {username, password: hash};
 
         let savedUser = await Users.add(user);
-        res.status(201).json({message: 'Registered!', savedUser});
+        res.status(201).json(savedUser);
 
       }
       catch(err){
