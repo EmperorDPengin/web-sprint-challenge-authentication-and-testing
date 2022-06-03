@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const router = require('express').Router();
 const Users = require('../users/users-model');
 const {checkBodyContent, checkUniqueUsername, checkUsernameExists} = require('./auth-middleware');
-const JWT_SECRET = process.env.JWT_SECRET || "shh";
+const { JWT_SECRET, HASH} = require('../secrets');
 
 router.post('/register',checkBodyContent, checkUniqueUsername, async (req, res, next) => {
   // res.end('implement register, please!');
@@ -37,7 +37,6 @@ router.post('/register',checkBodyContent, checkUniqueUsername, async (req, res, 
 
       try{
         const {username, password} = req.body;
-        let salt = process.env.HASH || 8;
         const hash = bc.hashSync(password, 8);
         const user = {username, password: hash};
 
