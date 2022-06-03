@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = process.env.JWT_SECRET;
+const {JWT_SECRET} = require('../secrets')
 
 const restricted = async (req, res, next) => {
 
@@ -35,18 +35,6 @@ const restricted = async (req, res, next) => {
   }
 
   next()
-
-
-  // jwt.verify(token, JWT_SECRET, (err, decodedToken) => {
-  //   if (err) {
-  //     next({ status: 401, message: 'token invalid'});
-  //   } else {
-  //     // req.decodedJwt = decodedToken;
-  //     // console.log(req.decodedToken);
-  //     next()
-  //   }
-  // })
-
 };
 
 module.exports = {restricted};
