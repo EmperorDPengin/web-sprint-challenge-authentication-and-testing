@@ -81,9 +81,10 @@ router.post('/login',checkBodyContent, checkUsernameExists, async (req, res, nex
   let user = req.body.user;
 
   if(user && bc.compareSync(password, user.password)) {
+    const token = generateToken(user);
     res.status(200).json({
       message: `welcome, ${user.username}`,
-      token: generateToken(user)
+      token
     })
   } else {
     next({ status: 401, message: 'invalid credentials'})
